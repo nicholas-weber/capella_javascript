@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>Interests Page</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+</head>
+
+<body onload="onload()">
+    <header>
+        <div class="top">
+            <a class="logo" href="index.html">CapellaVolunteers<span class="dotcom">.org</span></a>
+        </div>
+        <nav>
+            <ul class="topnav">
+                <li><a href="index.html">Home</a>
+                </li>
+                <li><a href="invitation.html">Invitation</a>
+                </li>
+                <li><a href="gallery.html">Gallery</a>
+                </li>
+                <li><a href="registration.html" class="active">Registration</a>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+    <section id="pageForm">
+        <form action="#">
+            <label style="display: block;">Interests:
+            </label>
+            <input type="checkbox" name="interest1" value="Interest1" checked> Interest 1<br>
+            <input type="checkbox" name="interest2" value="Interest2"> Interest 2<br>
+            <input type="checkbox" name="interest3" value="Interest3"> Interest 3<br>
+
+            <label for="signUpNewsletter" style="display: block; margin-top: 1rem;">Sign up for newsletter:
+            </label>
+            <input type="radio" name="signUpNewsletter" value="Yes" checked> Yes
+            <input type="radio" name="signUpNewsletter" value="No"> No
+            <label for="comments" style="display: block; margin-top: 1rem;">Comments:
+            </label>
+            <textarea name="comments" id="comments"></textarea>
+
+            <input type="text" name="referredBy" id="referredBy" placeholder="Referred By" />
+
+            <input type="hidden" id="userName" name="userName" />
+            <input type="hidden" id="password" name="password" />
+            <input type="hidden" id="passwordVerify" name="passwordVerify" />
+            <input type="hidden" id="firstName" name="firstName" />
+            <input type="hidden" id="lastName" name="lastName" />
+            <input type="hidden" id="email" name="email" />
+            <input type="hidden" id="signUpNewsletter" name="signUpNewsletter" />
+
+            <input type="submit" value="Register" onclick="register()">
+        </form>
+    </section>
+
+    <footer>This events site is for IT-FP3215 tasks.
+    </footer>
+</body>
+
+</html>

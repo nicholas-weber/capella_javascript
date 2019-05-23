@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>Invitation Page</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+</head>
+
+<style>
+    #userNameError,
+    #passwordError,
+    #passwordVerifyError,
+    #firstNameError,
+    #lastNameError,
+    #emailError,
+    #phoneNumberError {
+        display: block;
+        margin-bottom: 1rem;
+        color: red;
+    }
+</style>
+
+<body onload="fillValues()">
+    <header>
+        <div class="top">
+            <a class="logo" href="index.html">CapellaVolunteers<span class="dotcom">.org</span></a>
+        </div>
+        <nav>
+            <ul class="topnav">
+                <li><a href="index.html">Home</a>
+                </li>
+                <li><a href="invitation.html">Invitation</a>
+                </li>
+                <li><a href="gallery.html">Gallery</a>
+                </li>
+                <li><a href="registration.html" class="active">Registration</a>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+    <section id="pageForm">
+        <form id="registrationForm">
+            <label for="userName">Username:</label>
+            <input type="text" name="userName" id="userName" placeholder="Enter your Username" required />
+            <span id="userNameError"></span>
+
+            <label for="Password">Password:
+            </label>
+            <input type="password" name="password" id="password" placeholder="Enter your Password" required />
+            <span id="passwordError"></span>
+
+            <label for="passwordVerify">Verify your Password:
+            </label>
+            <input type="password" name="passwordVerify" id="passwordVerify" placeholder="Enter in your Password again"
+                required />
+            <span id="passwordVerifyError"></span>
+
+            <label for="firstName">First Name:
+            </label>
+            <input type="text" name="firstName" id="firstName" placeholder="Enter your First Name" required />
+            <span id="firstNameError"></span>
+
+            <label for="lastName">Last Name:
+            </label>
+            <input type="text" name="lastName" id="lastName" placeholder="Enter your Last Name" required />
+            <span id="lastNameError"></span>
+
+            <label for="email">Email:
+            </label>
+            <input type="text" name="email" id="email" placeholder="Enter your Email Address" />
+            <span id="emailError"></span>
+
+            <label for="phoneNumber">Phone Number
+            </label>
+            <input type="text" id="phoneNumber" placeholder="Enter your Phone Number" />
+            <span id="phoneNumberError"></span>
+
+            <label for="signUpNewsletter">Sign up for newsletter:
+            </label>
+            <input type="radio" name="signUpNewsletter" value="Yes" checked> Yes
+            <input type="radio" name="signUpNewsletter" value="No"> No
+            <button id="submitButton"  onclick="goToInterests()">Next Step</button>
+        </form>
+    </section>
+
+    <!-- <footer>This events site is for IT-FP3215 tasks.
+    </footer> -->
+
+    <script type="text/javascript" src="./js/registration.js"></script>
+</body>
+
+</html>

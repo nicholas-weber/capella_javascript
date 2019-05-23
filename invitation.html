@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>Invitation Page</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+</head>
+
+<body>
+    <header>
+        <div class="top">
+            <a class="logo" href="index.html">CapellaVolunteers<span class="dotcom">.org</span></a>
+        </div>
+        <nav>
+            <ul class="topnav">
+                <li><a href="index.html">Home</a>
+                </li>
+                <li><a href="invitation.html" class="active">Invitation</a>
+                </li>
+                <li><a href="gallery.html">Gallery</a>
+                </li>
+                <li><a href="registration.html">Registration</a>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+    <section id="pageForm">
+        <label for="numberOfVolunteers">Number of volunteers:
+        </label>
+        <input style="display: block; margin: .5rem 0;" type="number" name="numberOfVolunteers"
+            id="numberOfVolunteersInput" />
+
+        <h2 id="numberOfNumber"></h2>
+        <form style="visibility:hidden;" id="pageFormID">
+            <label for="recipientName">Recipient name:</label>
+            <input type="text" id="recipientNameInput" name="recipientName" placeholder="Enter your Recipient Name" />
+
+            <label for="organizationName">Organization name:
+            </label>
+            <input type="text" id="organizationNameInput" name="organizationName"
+                placeholder="Enter your Organization Name" />
+
+            <label for="eventDate">Event Date:
+            </label>
+            <input type="text" name="eventDate" id="eventDateInput" placeholder="Enter your Event Date" />
+
+            <label for="websiteURL">URL:
+            </label>
+            <input type="text" name="websiteURL" id="websiteURLInput" placeholder="Enter your Website URL" />
+
+            <label for="hostName">Host name:
+            </label>
+            <input type="text" name="hostName" id="hostNameInput" placeholder="Host Name" />
+
+            <input id="submitButton" type="submit" onclick="processInput()" value="Submit">
+        </form>
+    </section>
+
+
+    <article id="placeholderContent">
+
+    </article>
+    <footer>This events site is for IT-FP3215 tasks.
+    </footer>
+
+    <script>
+        // Declaring variables
+        var recipientName;
+        var organizationName;
+        var eventDate;
+        var websiteURL;
+        var hostName;
+
+        var numberOfVolunteers = 0;
+        var currentNumber = 0;
+
+        // Created an array to store volunteers
+        var volunteers = [];
+
+        // Created a class to process volunteer information into usable objects
+        class volunteerRecord {
+            constructor(recipientName, organizationName, eventDate, websiteURL, hostName) {
+                this.recipientName = recipientName;
+                this.organizationName = organizationName;
+                this.eventDate = eventDate;
+                this.websiteURL = websiteURL;
+                this.hostName = hostName;
+            }
+
+            // Returns text for the information template
+            printRecord() {
+                return `
+                    Hello <span>${this.recipientName}</span > !
+                    <br /><br />
+                    You have been invited to volunteer for an event held by <span>${this.organizationName}</span>
+                    on <span>${this.eventDate}</span>.
+                    Please come to the following website: 
+                    <span>${this.websiteURL}</span> to sign up as a volunteer.
+                    <br /><br /> 
+                    Thanks!
+                    <br />
+                    <br />
+                    <span>${this.hostName}</span>`
+            }
+        }
+
+        // Iterates through user input and returns user data within the HTML
+        function printAllRecords() {
+            var content = document.getElementById("placeholderContent");
+            for (var ct = 0; ct < volunteers.length; ct++) {
+                content.innerHTML = content.innerHTML + "\n" + volunteers[ct].printRecord();
+            }
+        }
+
+        // Receives number of volunteers and submits it once user hits enter key
+        const numberOfVolunteersInput = document.getElementById("numberOfVolunteersInput");
+        numberOfVolunteersInput.addEventListener("keyup", function (event) {
+            if (event.key === "Enter") {
+                numberOfVolunteers = numberOfVolunteersInput.value;
+                document.getElementById("numberOfNumber").innerHTML = `Volunteer ${currentNumber + 1} of ${numberOfVolunteers}`;
+                document.getElementById("pageFormID").style.visibility = "visible";
+            }
+        });
+
+        // Prevents form from reloading on each submit
+        document.getElementById("pageFormID").addEventListener("click", function (event) {
+            event.preventDefault()
+        });
+
+        // Performs all data collection and inner HTML modification functions upon submission
+        function processInput() {
+            if (currentNumber < numberOfVolunteers) {
+                var recipientName = getRecipientName();
+                var organizationName = getOrganizationName();
+                var eventDate = getEventDate();
+                var websiteURL = getWebsiteURL();
+                var hostName = getHostName();
+
+                // creates a new volunteer in accordance with the volunteerRecord class
+                var newVolunteer = new volunteerRecord(recipientName, organizationName, eventDate, websiteURL, hostName);
+                // adds the new volunteer to the volunteers array
+                volunteers.push(newVolunteer);
+                // increases the count of current volunteers each time a volunteer is processed
+                currentNumber++;
+                // compares the current volunteer with the amount of total volunteers to determine if they are equal
+                if (currentNumber.toString() === numberOfVolunteers.toString()) {
+                    // if the two values are equal, finish taking input
+                    document.getElementById("numberOfNumber").innerHTML = "All volunteers have been submitted.";
+                    document.getElementById("submitButton").disabled;
+                    clearInputs();
+                    printAllRecords();
+                } else {
+                    // if currentNumber is less than total amount of volunteers, continue to accept volunteer data
+                    document.getElementById("numberOfNumber").innerHTML = `Volunteer ${currentNumber + 1} of ${numberOfVolunteers}`;
+                    clearInputs();
+                };
+            }
+        };
+        
+        //clears inputs upon submission
+        function clearInputs() {
+            document.getElementById('recipientNameInput').value = "";
+            document.getElementById('organizationNameInput').value = "";
+            document.getElementById('eventDateInput').value = "";
+            document.getElementById('websiteURLInput').value = "";
+            document.getElementById('hostNameInput').value = "";
+        };
+
+        // Each of these functions collects user input and replaces the corresponding spans with said user input
+        function getRecipientName() {
+            recipientName = document.getElementById('recipientNameInput').value;
+            return recipientName;
+            //document.getElementById("recipientName").innerHTML = recipientName;
+        };
+        function getOrganizationName() {
+            organizationName = document.getElementById('organizationNameInput').value;
+            return organizationName;
+            // document.getElementById("organizationName").innerHTML = organizationName;
+        };
+        function getEventDate() {
+            eventDate = document.getElementById('eventDateInput').value;
+            return eventDate;
+            // document.getElementById("eventDate").innerHTML = eventDate;
+        };
+        function getWebsiteURL() {
+            websiteURL = document.getElementById('websiteURLInput').value;
+            return websiteURL;
+            // document.getElementById("websiteURL").innerHTML = websiteURL;
+        };
+        function getHostName() {
+            hostName = document.getElementById('hostNameInput').value;
+            return hostName;
+            // document.getElementById("hostName").innerHTML = hostName;
+        };
+    </script>
+</body>
+
+</html>
