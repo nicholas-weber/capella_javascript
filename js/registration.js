@@ -65,8 +65,8 @@ phoneNumber.addEventListener('keyup', function (event) {
 
 function fillValues() {
     userName.value = 'Nicholas';
-    password.value = 'jamesweber';
-    passwordVerify.value = 'jamesweber';
+    password.value = 'password';
+    passwordVerify.value = 'password';
     firstName.value = 'Nicholas';
     lastName.value = 'Weber';
     email.value = 'nikkoweber@live.com';
