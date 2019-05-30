@@ -26,12 +26,12 @@
         </nav>
     </header>
     <section id="pageForm">
-        <form action="#">
+        <form id="interestsForm">
             <label style="display: block;">Interests:
             </label>
-            <input type="checkbox" name="interest1" value="Interest1" checked> Interest 1<br>
-            <input type="checkbox" name="interest2" value="Interest2"> Interest 2<br>
-            <input type="checkbox" name="interest3" value="Interest3"> Interest 3<br>
+            <input type="checkbox" name="interest" value="Interest1" checked> Interest 1<br>
+            <input type="checkbox" name="interest" value="Interest2"> Interest 2<br>
+            <input type="checkbox" name="interest" value="Interest3"> Interest 3<br>
 
             <label for="signUpNewsletter" style="display: block; margin-top: 1rem;">Sign up for newsletter:
             </label>
@@ -51,7 +51,7 @@
             <input type="hidden" id="email" name="email" />
             <input type="hidden" id="signUpNewsletter" name="signUpNewsletter" />
 
-            <input type="submit" value="Register" onclick="register()">
+            <button onclick="register()">Register</button>
         </form>
     </section>
 

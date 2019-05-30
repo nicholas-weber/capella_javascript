@@ -173,7 +173,17 @@ function checkValidation() {
     }
 }
 
+// Converts user input into query string and submits the form, moving to the interests page
 function goToInterests() {
+    // Creates the query string URL
     let url = `interests.html?userName=${userName.value}&password=${password.value}&passwordVerify=${passwordVerify.value}&firstName=${firstName.value}&lastName=${lastName.value}&email=${email.value}`;
-    window.location = url;
+    
+    // Receives data based on input from registration form
+    const myForm = document.getElementById('registrationForm');
+
+    // Sets URL bar to the value stored in the query string URL
+    myForm.action = url;
+
+    // Submits form and moves to next page
+    myForm.submit();
 }
