@@ -1,13 +1,15 @@
+// Loads on page load
 function loadConfirmation() {
+    // obtains the cookie as a string and splits it at the semicolons
     var value = "; " + document.cookie;
     var cookies = value.split("; ");
     
     // find the cookie for userInfo
     var userInfoString = cookies[1];
 
+    // places the split data into the document for user confirmation
     if (userInfoString) {
         userInfoStringMinusStuff = userInfoString.replace('userInfo=', '');
-        console.log(userInfoStringMinusStuff);
         var userInfo = JSON.parse(userInfoStringMinusStuff);
         document.getElementById('userName').innerHTML = userInfo.userName;
         document.getElementById('password').innerHTML = userInfo.password;

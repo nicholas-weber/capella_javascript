@@ -1,4 +1,6 @@
+// Loads on page load
 function onload() {
+    // gets user data from query string
     var userName = getParameterByName('userName');
     var password = getParameterByName('password');
     var passwordVerify = getParameterByName('passwordVerify');
@@ -20,6 +22,7 @@ function onload() {
     emailInput.value = email;
 }
 
+// returns data from query string
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, '\\$&');
@@ -30,16 +33,12 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+// converts all data on page into a json object to send to confirmation
 function register() {
-    // document.cookie = `userName=${document.getElementById('userName').value}`;
-    // document.cookie = `password=${document.getElementById('password').value}`;
-    // document.cookie = `passwordVerify=${document.getElementById('passwordVerify'.value)}`;
-    // document.cookie = `firstName=${document.getElementById('firstName').value}`;
-    // document.cookie = `lastName=${document.getElementById('lastName').value}`;
-    // document.cookie = `email=${document.getElementById('email').value}`;
-
+    // creates array for interests selection
     const interestsArray = document.getElementsByName('interest');
     let interests = '';
+
     for (var i = 0; i < interestsArray.length; i++) {
         if(interestsArray[i].checked==true) {
             try {
@@ -51,6 +50,7 @@ function register() {
         }  
     }
 
+    // creates a json oject to be converted into a cookie
     const jsonValue = {
         userName: document.getElementById('userName').value,
         password: document.getElementById('password').value,
@@ -64,10 +64,12 @@ function register() {
         referredBy: document.getElementById('referredBy').value
     }
 
+    // turns the data into a string and writes it to a cookie
     const stringValue = JSON.stringify(jsonValue);
     localStorage.setItem('userInfo', stringValue);
     document.cookie = `userInfo=${stringValue}`;
 
+    // redirects to confirmation page
     let url = `confirm.html`;
     const interestsForm = document.getElementById('interestsForm');
     interestsForm.action = url;
