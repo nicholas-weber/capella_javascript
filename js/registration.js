@@ -64,13 +64,13 @@ phoneNumber.addEventListener('keyup', function (event) {
 });
 
 function fillValues() {
-    userName.value = 'Nicholas';
+    userName.value = 'username';
     password.value = 'password';
     passwordVerify.value = 'password';
-    firstName.value = 'Nicholas';
-    lastName.value = 'Weber';
-    email.value = 'nikkoweber@live.com';
-    phoneNumber.value = "7632185996";
+    firstName.value = 'FirstName';
+    lastName.value = 'LastName';
+    email.value = 'user@gmail.com';
+    phoneNumber.value = "5555555555";
 }
 
 // Determines whether or not the user input matched standards for submission
